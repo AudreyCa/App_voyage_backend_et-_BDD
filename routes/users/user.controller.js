@@ -23,16 +23,6 @@ exports.getUser = (async (req, res) => {
     }
 })
 
-//         const { id } = req.params
-//         // Attention, c'est pareil pour "id" dans le chemin de la requete en parametre.
-//         const dataUser = await pool.query(`SELECT * FROM "USER" WHERE user_id = $1`,
-//             [id]
-//         )
-//         // console.log(req.params);
-//         // on spécifie .rows[0] pour n'obtenir que l'objet et non le tableau d'objets
-//         res.json(dataUser.rows[0]);
-//         console.log(dataUser.rows[0]);
-
 // fonction pour créer un utilisateur (first time)
 exports.postUser = (async (req, res) => {
     try {
@@ -150,34 +140,3 @@ exports.deleteUser = (async (req, res) => {
     }
 })
 
-// exports.getOneUser = (async (req, res) => {
-//     try {
-//         // console.log(req.body);
-//         // on est spécifique, on recherche par rapport à l'id.
-//         // L'user_id est dans req.params (valeur unique) MAIS ATTENTION, comme au format dans la ligne 50 ad "id"
-//         const { id } = req.params
-//         // Attention, c'est pareil pour "id" dans le chemin de la requete en parametre.
-//         const dataUser = await pool.query(`SELECT * FROM "USER" WHERE user_id = $1`,
-//             [id]
-//         )
-//         // console.log(req.params);
-//         // on spécifie .rows[0] pour n'obtenir que l'objet et non le tableau d'objets
-//         res.json(dataUser.rows[0]);
-//         console.log(dataUser.rows[0]);
-
-//     } catch (err) {
-//         console.error(err.message);
-//     }
-// })
-
-
-    // Bearer token est dans dans: req.rawHeaders
-    // const authHeader = req.rawHeaders[0] // correspond à ['Authorization']
-    // console.log(authHeader);
-    // const codeToken = req.rawHeaders[1].split(' ')[1] // split permet d'enlever le mot "bearer" pour n'avoir que le token
-    // console.log(codeToken);
-    // // pour le token
-    // const token = authHeader && codeToken
-
-
-    // localStorage.setItem('Authorization', 'Bearer ' + accessToken);
