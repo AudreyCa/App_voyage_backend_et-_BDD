@@ -1,6 +1,5 @@
 const express = require("express");
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
+const cors = require("cors");
 
 
 // chemin des router
@@ -13,11 +12,10 @@ const port = 8080
 
 
 // middleware
+app.use(cors())
 app.use(express.json()); //req.body
 //urlencoded :
 app.use(express.urlencoded({extended: false}));
-// pour les cookies
-app.use(cookieParser())
 
 
 // mobilisation des routers

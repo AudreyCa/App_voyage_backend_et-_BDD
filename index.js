@@ -1,9 +1,9 @@
 const express = require('express');
-// on importe express
-const app = express();
-const port = 5000;
 const cors = require("cors");
-// on importe cors
+
+const app = express();
+
+const port = 5000;
 const pool = require("./database"); // lier au Pool dans le fichier database.js
 
 // middleware :
