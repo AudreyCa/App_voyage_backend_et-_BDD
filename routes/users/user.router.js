@@ -13,8 +13,8 @@ myRouter.route('/user')
     .get(auth, getUser)
 
 myRouter.route('/user/:id')
-    .put(auth, putUser)
-    .delete(auth, deleteUser)
+    .put(putUser)
+    .delete(deleteUser)
 
 
 // puis on exporte le router
