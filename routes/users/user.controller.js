@@ -9,12 +9,25 @@ const bcrypt = require('bcrypt'); // async library !!!
 exports.getUser = (async (req, res) => {
     try {
         console.log(req.user.user_mail);
+        console.log(req.user.user_id);
 
         const allUsers = await pool.query(`SELECT * FROM "USER"`)
 
         // Avec le token, on va filtrer les users suivant leur token et non leur id.
         res.json(allUsers.rows.filter(oneUser => oneUser.user_mail === req.user.user_mail))
         console.log(allUsers.rows.filter(oneUser => oneUser.user_mail === req.user.user_mail));
+
+
+        // const tab = allUsers.rows
+        // tab.forEach(user => {
+        //     if(user.user_mail === req.user.user_mail) {
+        //             res.send('okai')
+        //             // console.log(tab);
+        //         } else {
+        //             res.sendStatus(401)
+        //         } 
+        // });
+
 
     } catch (err) {
         console.error(err.message);
@@ -37,7 +50,7 @@ exports.postUser = (async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        // res.status(401).send("Merci d'utiliser une autre adresse mail")
+        res.status(401).send("Email incorrect")
 
     }
 })
@@ -118,16 +131,18 @@ exports.putUser = (async (req, res) => {
         // hashage du Mdp aussi au moment du put: 
         const hashedPassword = await bcrypt.hash(user_mdp, 10)
 
+
         const majProfil = await pool.query(`UPDATE "USER" SET user_firstName = $1, user_lastName = $2, user_mail = $3, user_mdp = $4 WHERE user_id = $5 RETURNING *`,
             [user_firstName, user_lastName, user_mail, hashedPassword, id]
         );
 
-        // Ici, on enverra un message pour signifier que la requete est bien passée
-        res.json(majProfil.rows);
-        console.log("Données bien transmises", majProfil.rows);
-        
+            res.json(majProfil.rows[0]);
+            console.log("Données bien transmises", majProfil.rows[0]);
+
+
     } catch (err) {
         console.error(err.message);
+        return res.status(400).send("Veuillez choisir une autre adresse e-mail. Celle-ci est déjà utilisée.");
     }
 })
 
