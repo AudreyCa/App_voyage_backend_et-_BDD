@@ -13,6 +13,7 @@ exports.getAllLists = (async (req, res) => {
         console.error(err.message);    
     }
 })
+
 exports.getAllListsOneUser = (async (req, res) => {
     try {
         // console.log(req.body);
@@ -30,6 +31,7 @@ exports.getAllListsOneUser = (async (req, res) => {
         console.error(err.message);    
     }
 })
+
 exports.getOneListOneUser = (async(req, res) => {
     try {
         // console.log(req.body);
@@ -39,13 +41,14 @@ exports.getOneListOneUser = (async(req, res) => {
         [id]
         )
         // console.log(req.params);
-        res.json(oneList.rows[0]);
-        console.log(oneList.rows[0]);
+        res.json(oneList.rows);
+        console.log(oneList.rows);
         
     } catch (err) {
         console.error(err.message);    
     }
 })
+
 exports.postList = (async(req, res) => {
     try {
         // console.log(req.params);
@@ -54,16 +57,19 @@ exports.postList = (async(req, res) => {
 
         const newList = await pool.query ("INSERT INTO list (user_id, list_title) VALUES($1, $2) RETURNING *",
          [id, list_title])
+
         res.json(newList)
  
     } catch (err) {
         console.error(err.message);
     }
 })
+
 exports.putList = (async(req, res) => {
     try {
         const { id } = req.params;
         const { list_title } = req.body;
+        
         const majList = await pool.query("UPDATE list SET list_title = $1 WHERE list_id = $2", 
         [list_title, id]
         );

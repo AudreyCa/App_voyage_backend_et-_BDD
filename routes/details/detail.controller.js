@@ -46,6 +46,7 @@ exports.getOneDetailOneList = (async(req, res) => {
         console.error(err.message);    
     }
 })
+
 exports.postDetail = (async(req, res) => {
     try {
         // console.log(req.params);
@@ -54,12 +55,13 @@ exports.postDetail = (async(req, res) => {
 
         const newDetail = await pool.query ("INSERT INTO detail (list_id, detail_description) VALUES($1, $2) RETURNING *", 
         [id, detail_description])
-        res.json(newDetail)
+        res.json(newDetail.rows)
  
     } catch (err) {
         console.error(err.message);
     }
 })
+
 exports.putDetail = (async(req, res) => {
     try {
         const { id } = req.params;
