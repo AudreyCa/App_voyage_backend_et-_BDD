@@ -66,22 +66,36 @@ exports.putDetail = (async(req, res) => {
     try {
         const { id } = req.params;
         const { detail_description } = req.body;
-        const majDetail = await pool.query("UPDATE detail SET detail_description = $1 WHERE detail_id = $2", 
+        const majDetail = await pool.query("UPDATE detail SET detail_description = $1 WHERE detail_id = $2 RETURNING *", 
         [detail_description, id]
         );
 
         // Ici, on enverra un message pour signifier que la requete est bien passée
-        res.json("Donnée bien transmise");
+        res.json(majDetail.rows[0]);
         console.log("Données bien transmises");
     } catch (err) {
         console.error(err.message);    
     }
 })
-exports.deleteDetail = (async(req, res) => {
+exports.deleteOneDetail = (async(req, res) => {
     try {
         const { id } = req.params;
 
         const supprimerDetail = await pool.query("DELETE FROM detail WHERE detail_id = $1", [id])
+
+        // Ici, on enverra un message pour signifier que la donnée à bien été supprimé
+        res.json("Donnée bien effacée");
+        console.log("Donnée bien effacée");
+    } catch (err) {
+        console.error(err.message);    
+    }
+})
+
+exports.deleteAllDetail = (async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const supprimerDetail = await pool.query("DELETE FROM detail WHERE list_id = $1", [id])
 
         // Ici, on enverra un message pour signifier que la donnée à bien été supprimé
         res.json("Donnée bien effacée");

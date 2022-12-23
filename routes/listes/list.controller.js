@@ -70,12 +70,12 @@ exports.putList = (async(req, res) => {
         const { id } = req.params;
         const { list_title } = req.body;
         
-        const majList = await pool.query("UPDATE list SET list_title = $1 WHERE list_id = $2", 
+        const majList = await pool.query("UPDATE list SET list_title = $1 WHERE list_id = $2 RETURNING *", 
         [list_title, id]
         );
 
         // Ici, on enverra un message pour signifier que la requete est bien passée
-        res.json("Donnée bien transmise");
+        res.json(majList.rows[0]);
         console.log("Données bien transmises");
     } catch (err) {
         console.error(err.message);    
