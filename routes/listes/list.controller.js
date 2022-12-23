@@ -95,3 +95,17 @@ exports.deleteList = (async(req, res) => {
         console.error(err.message);    
     }
 })
+exports.deleteAllList = (async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const supprimerList = await pool.query("DELETE FROM list WHERE user_id = $1", 
+        [id])
+
+        // Ici, on enverra un message pour signifier que la donnée à bien été supprimé
+        res.json("Donnée bien effacée");
+        console.log("Donnée bien effacée");
+    } catch (err) {
+        console.error(err.message);    
+    }
+})

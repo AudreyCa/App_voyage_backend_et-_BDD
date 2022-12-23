@@ -1,6 +1,6 @@
 const express = require("express");
 const myRouter = express.Router();
-const { getAllLists, getAllListsOneUser, getOneListOneUser, postList, putList, deleteList } = require('./list.controller')
+const { getAllLists, getAllListsOneUser, getOneListOneUser, postList, putList, deleteList, deleteAllList } = require('./list.controller')
 
 // quand on a fait les controllers, on transforme comme ceci :
 myRouter.route('/list')
@@ -15,6 +15,8 @@ myRouter.route('/list/:id')
 myRouter.route('/onelist/:id')
     .get(getOneListOneUser)
 
+myRouter.route('/lists/:id')
+    .delete(deleteList)
 
 // puis on exporte le router
 module.exports = myRouter
