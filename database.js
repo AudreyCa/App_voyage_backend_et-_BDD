@@ -7,7 +7,7 @@ const pool = new Pool({
     password: "Digifab74",
     host: "localhost",
     port: 5432,
-    database: "bdd_voyage"
+    database: "bdd_voyages"
 })
 
 // on exporte pour le mettre dans index-s.js
