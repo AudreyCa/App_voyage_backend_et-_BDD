@@ -8,25 +8,14 @@ const bcrypt = require('bcrypt'); // async library !!!
 // Il n'y a plus les id. car plus de req.params
 exports.getUser = (async (req, res) => {
     try {
-        console.log(req.user.user_mail);
-        console.log(req.user.user_id);
+        console.log('req.user.user_mail', req.user.user_mail);
+        console.log('req.user', req.user);
 
         const allUsers = await pool.query(`SELECT * FROM "USER"`)
 
         // Avec le token, on va filtrer les users suivant leur token et non leur id.
         res.json(allUsers.rows.filter(oneUser => oneUser.user_mail === req.user.user_mail))
         console.log(allUsers.rows.filter(oneUser => oneUser.user_mail === req.user.user_mail));
-
-
-        // const tab = allUsers.rows
-        // tab.forEach(user => {
-        //     if(user.user_mail === req.user.user_mail) {
-        //             res.send('okai')
-        //             // console.log(tab);
-        //         } else {
-        //             res.sendStatus(401)
-        //         } 
-        // });
 
 
     } catch (err) {
