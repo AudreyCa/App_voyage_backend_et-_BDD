@@ -25,6 +25,19 @@ app.use(express.urlencoded({extended: false}));
 app.use(routerUser, routerList, routerDetail)
 
 
+// pour le déployement du site static + redirection au refresh
+app.use('/js', express.static(__dirname + '/js'));
+app.use('/dist', express.static(__dirname + '/../dist'));
+app.use('/css', express.static(__dirname + '/css'));
+app.use('/partials', express.static(__dirname + '/partials'));
+
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('index.html', { root: __dirname });
+});
+
+
+
 // Middleware pour recuperer et lire les messages de la page de contact à l'adresse : http://localhost:8080/messages
 //  pour lire les messages stocker dans msgContactForm.json 
 app.get('/messages', function (req, res) {
@@ -42,6 +55,11 @@ app.post('/contact', function(req, res) {
 
 });
 
+
+
+// app.get('/',(req,res) => {
+//   res.redirect('/index.html');
+// });
 
 
 
