@@ -25,14 +25,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(routerUser, routerList, routerDetail)
 
 
-// pour le déployement du site static + redirection au refresh
-// app.all('/', function(req, res, next) {
-//     // Just send the index.html for other files to support HTML5Mode
-//     res.sendFile('index.html', { root: __dirname + '/../dist/client'});
-// });
-
-
-
 // Middleware pour recuperer et lire les messages de la page de contact à l'adresse : http://localhost:8080/messages
 //  pour lire les messages stocker dans msgContactForm.json 
 app.get('/messages', function (req, res) {
