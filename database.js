@@ -13,11 +13,3 @@ const pool = new Pool({
 
 // on exporte pour le mettre dans index-s.js
 module.exports = pool
-
-
-
-// user: "postgres",
-// password: "Digifab74",
-// host: "localhost",
-// port: 5432,
-// database: "bdd_voyages"
