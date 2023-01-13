@@ -44,9 +44,9 @@ app.post('/contact', function(req, res) {
 
 
 
-// app.get('/',(req,res) => {
-//   res.redirect('/index.html');
-// });
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
 
 
 
