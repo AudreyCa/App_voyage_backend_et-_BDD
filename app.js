@@ -1,5 +1,7 @@
 const express = require("express");
-const cors = require("cors");
+const cors = require("cors"(
+  {credentials: true, origin: true}
+  ));
 const axios = require('axios'); //  Axios est un client HTTP basé sur les promesses, compatible avec node.js et les navigateurs.
 const fs = require("fs").promises
 
