@@ -1,4 +1,5 @@
 const Pool = require("pg").Pool // librairie node-postgres
+require('dotenv').config()
 
 // On instancie un nouvel objet de configuration pool avec les infos de notre BDD
 const pool = new Pool({
