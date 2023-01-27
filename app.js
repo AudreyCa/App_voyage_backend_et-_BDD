@@ -5,7 +5,7 @@ const fs = require("fs").promises
 
 
 
-// chemin des router
+// chemin des routers
 const routerUser = require('./routes/users/user.router')
 const routerList = require('./routes/listes/list.router') 
 const routerDetail = require('./routes/details/detail.router') 
@@ -43,7 +43,7 @@ app.post('/contact', function(req, res) {
 });
 
 
-
+// pour le rafraichissement de la page
 app.get('*', (req, res) => {
   res.redirect('/');
 });

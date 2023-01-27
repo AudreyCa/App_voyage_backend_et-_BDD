@@ -1,7 +1,6 @@
-const Pool = require("pg").Pool
-// librairie pg (postgres)
+const Pool = require("pg").Pool // librairie node-postgres
 
-// On instancie une nouvelle pool avec le contenu de notre BDD
+// On instancie un nouvel objet de configuration pool avec les infos de notre BDD
 const pool = new Pool({
     user: "audcan",
     password: process.env.BDD_password,
@@ -11,5 +10,5 @@ const pool = new Pool({
     ssl:true
 })
 
-// on exporte pour le mettre dans index-s.js
+// puis on l'exporte
 module.exports = pool

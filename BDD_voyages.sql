@@ -91,12 +91,10 @@ USER_ID
 alter table DETAIL
    add constraint FK_DETAIL_GET_LIST foreign key (LIST_ID)
       references LIST (LIST_ID)
-      -- on delete restrict on update restrict;
       ON DELETE CASCADE;
 
 alter table LIST
    add constraint FK_LIST_CREATE_USER foreign key (USER_ID)
       references "USER" (USER_ID)
-      -- on delete restrict on update restrict;
       ON DELETE CASCADE;
 
