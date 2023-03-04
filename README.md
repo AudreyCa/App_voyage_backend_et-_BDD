@@ -4,7 +4,7 @@ This project was carried out during the training of Application Designer Develop
 
 ## **Technologies used**
 
-Language : Angular14
+Language : Node.js and Express.js
 
 IDE : Visual Studio Code
 
